@@ -1,0 +1,1 @@
+{"uuid": "1ae82e4f-314c-4787-be04-cca862a16d19", "children": ["6d00c809-64d7-4151-8734-6078a826230a"], "befores": [{"name": "ingredient_id", "status": "passed", "steps": [{"name": "Получить данные об ингредиентах", "status": "passed", "start": 1780664425197, "stop": 1780664425496}], "start": 1780664425197, "stop": 1780664425496}], "start": 1780664425197, "stop": 1780664429163}

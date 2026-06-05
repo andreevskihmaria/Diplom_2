@@ -1,11 +1,13 @@
 from api_methods.user_methods import UserMothod
 import pytest
+import allure
 from data import CreatedUser
 
-#создание пользователя
+@allure.suite('Создание пользователя')
 class TestCreateUser:
 
-    #создание уникального пользователя
+    @allure.title('Успешное создание уникального пользователя')
+    @allure.description('Проверка успешной регистрации нового пользователя')
     def test_successful_user_creation(self, user_payload):
         response = UserMothod.create_user(user_payload)
         response_body = response.json()
@@ -18,7 +20,8 @@ class TestCreateUser:
         assert 'refreshToken' in response_body
 
     
-    #создание существующего пользователя
+    @allure.title('Ошибка при создании уже существующего пользователя')
+    @allure.description('Проверка, что нельзя создать дублирующегося пользователя')
     def test_error_when_duplicating_user(self, user_payload):
         UserMothod.create_user(user_payload)
 
@@ -28,7 +31,8 @@ class TestCreateUser:
         assert response.json()['message'] == 'User already exists'
 
 
-    #ошибка при отсутствии обязазельного поля
+    @allure.title('Ошибка при отсутствии обязательного поля')
+    @allure.description('Проверка ошибки регистрации без одного из обязательных полей')
     @pytest.mark.parametrize('payload', [
         CreatedUser.user_wihtout_email,
         CreatedUser.user_wihtout_password,
