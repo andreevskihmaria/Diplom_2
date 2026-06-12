@@ -1,5 +1,6 @@
 from api_methods.order_methods import OrderMethod
 import allure
+from data import MessageError
 
 
 @allure.suite('Создание заказа с авторизацией')
@@ -24,7 +25,7 @@ class TestCreatedOrderWithLogin:
        response = OrderMethod.create_order(payload, access_token)
 
        assert response.status_code == 400
-       assert response.json()['message'] == 'Ingredient ids must be provided'
+       assert response.json()['message'] == MessageError.message_ingredient_ids_must_be_provided
 
 
     @allure.title('Создание заказа с невалидным хешем ингредиента и авторизацией')
@@ -62,7 +63,7 @@ class TestCreatedOrderWithutLogin:
        response = OrderMethod.create_order(payload)
 
        assert response.status_code == 400
-       assert response.json()['message'] == 'Ingredient ids must be provided'
+       assert response.json()['message'] == MessageError.message_ingredient_ids_must_be_provided
 
 
     @allure.title('Создание заказа с невалидным хешем ингредиента без авторизации')

@@ -5,8 +5,6 @@ from api_methods.user_methods import UserMothod
 from api_methods.order_methods import OrderMethod
 
 
-
-
 @pytest.fixture #геренерация данных и передача в тест, авторизация и удаление пользователя
 def user_payload():
     payload = generate_user_payload()
@@ -49,8 +47,6 @@ def ingredient_id():
     body = response.json()
     ingredient = random.choice(body['data'])
     return ingredient['_id']
-
-
 
 
 @pytest.fixture #получение токена авторизации

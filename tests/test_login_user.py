@@ -1,6 +1,7 @@
 from api_methods.user_methods import UserMothod
 import pytest
 import allure
+from data import MessageError
 
 
 @allure.suite('Авторизация пользователя')
@@ -35,5 +36,5 @@ class TestLoginUser:
         response = UserMothod.login_user(payload)
 
         assert response.status_code == 401
-        assert response.json()['message'] == 'email or password are incorrect'
+        assert response.json()['message'] == MessageError.message_email_or_password_are_incorrect
         

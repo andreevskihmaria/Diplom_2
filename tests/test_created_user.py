@@ -2,6 +2,8 @@ from api_methods.user_methods import UserMothod
 import pytest
 import allure
 from data import CreatedUser
+from data import MessageError
+
 
 @allure.suite('Создание пользователя')
 class TestCreateUser:
@@ -28,7 +30,7 @@ class TestCreateUser:
         response = UserMothod.create_user(user_payload)
 
         assert response.status_code == 403
-        assert response.json()['message'] == 'User already exists'
+        assert response.json()['message'] == MessageError.message_user_already_exists
 
 
     @allure.title('Ошибка при отсутствии обязательного поля')
@@ -42,5 +44,5 @@ class TestCreateUser:
         response = UserMothod.create_user(payload)
 
         assert response.status_code == 403
-        assert response.json()['message'] == 'Email, password and name are required fields'
+        assert response.json()['message'] == MessageError.message_email_password_name_are_required_fields
         
